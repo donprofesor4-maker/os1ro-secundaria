@@ -27,7 +27,7 @@ async function save(){if(!person)return;if(busy)return busy;const savedSession=s
  finally{busy=null;}})();return busy;
 }
 async function enter(e){e.preventDefault();$('registro-enter').disabled=true;try{
- if(!config.endpoint)throw Error('El registro todavía no está activado.');
+ if(!config.endpoint)throw Error('No se pudo cargar la conexión del expediente. Actualiza esta página e intenta otra vez.');
  const candidate={name:$('alumno-name').value.trim().replace(/\s+/g,' '),group:$('alumno-group').value.trim().replace(/\s+/g,' '),pin:$('alumno-pin').value};
  const data=await request({...candidate,action:$('alumno-first').checked?'register':'load',classCode:$('alumno-class').value.trim()});
  person=candidate;session++;revision=data.state.revision;merge(data.state.logs);
@@ -38,7 +38,7 @@ async function enter(e){e.preventDefault();$('registro-enter').disabled=true;try
  }catch(error){$('registro-error').textContent=error.name==='AbortError'?'La conexión tardó demasiado. Vuelve a intentar.':error.message;}finally{$('registro-enter').disabled=false;}}
 async function exit(){if(!person)return;document.querySelector('main').inert=true;await save();await save();document.querySelector('main').inert=false;if(read('pending',null)&&!confirm('El último envío sigue pendiente. Se conserva en este equipo. ¿Cerrar sesión de todos modos?'))return;person=null;session++;clearTimeout(timer);timer=null;root.dispatchEvent(new Event('os1s1:identity'));$('registro-form').reset();$('class-row').hidden=true;$('registro-error').textContent='Sesión cerrada. El siguiente alumno puede entrar.';$('registro-dialog').showModal();$('registro-student').textContent='Mi expediente';$('registro-exit').hidden=true;$('registro-open').hidden=false;}
 $('registro-recover').onclick=async()=>{if(!person)return;try{const data=await request({...auth(),action:'load'}),backup=read('conflicts',[]);backup.push(read('pending',null));write('conflicts',backup);localStorage.removeItem(key('pending'));merge(data.state.logs);write('revision',data.state.revision);write('game',data.state.snapshots?.[theme]||null);revision=data.state.revision;$('registro-recover').hidden=true;root.dispatchEvent(new Event('os1s1:identity'));schedule();}catch(e){status(e.message);}};
-if(!config.endpoint){$('registro-open').hidden=true;status('Tu avance se conserva en esta computadora. El expediente escolar todavía no está disponible.');return;}
+if(!config.endpoint)status('No se pudo cargar la conexión. Actualiza la página para entrar.');
 root.OS1Registro={key,read,write,uid,isStudent:()=>!!person,send:async()=>{await save();if(timer){clearTimeout(timer);timer=null;}await save();if(!read('pending',null))root.location.href='../../index.html';},changed};
 $('registro-form').addEventListener('submit',enter);$('registro-exit').onclick=exit;
 $('alumno-first').addEventListener('change',()=>{$('class-row').hidden=!$('alumno-first').checked;});
