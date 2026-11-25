@@ -12,7 +12,7 @@ No hay botón para enviar reportes. Las operaciones se guardan automáticamente,
 
 Las estaciones central y espacial comparten expediente, pero conservan puntos de continuación separados. Si otro equipo envió una versión más reciente, se ofrece recuperar ese avance y se conserva localmente el reporte en conflicto. Cerrar sesión es recomendable en equipos compartidos.
 
-El registro anónimo anterior se conserva como bitácora local; no se atribuye automáticamente a un alumno. Los encargos reconfigurados usan una versión nueva para no validar misiones con los nombres anteriores. El guardado en la nube requiere activar el servicio y completar una prueba real; no confundir el modo invitado con una base de datos remota.
+El registro anónimo anterior se conserva como bitácora local; no se atribuye automáticamente a un alumno. Los encargos reconfigurados usan una versión nueva para no validar misiones con los nombres anteriores. El modo invitado guarda únicamente en el navegador. El servicio propio de secundaria se activó el 25 de noviembre de 2026; nombre, grupo y clave permiten recuperar el expediente.
 
 ## Servicio propio
 
