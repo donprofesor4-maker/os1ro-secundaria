@@ -27,3 +27,8 @@ Los progresos, documentos y evidencias se guardan localmente, con claves propias
 `node tests/entregas.cjs`
 
 Cubre los 72 encargos, acceso directo al hacker, errores sin avance, nombres, versiones, movimientos, respaldo que conserva el original, desbloqueos, bitácora y recarga. Todos los recursos están incluidos. Para revisión local: `python3 -m http.server 8766`.
+
+
+## Encargos versión 2
+
+72 encargos reconfigurados: nombres sin espacios, extensión obligatoria y más navegación y creación de carpetas. Las instrucciones destacan exclusivamente el nombre que debe escribirse, sin comillas ni paréntesis. El expediente incorpora guardado automático sin botón de envío; véase [guía docente](docente/REGISTRO.md) para activación y alcance.
